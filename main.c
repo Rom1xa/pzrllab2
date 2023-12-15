@@ -1,6 +1,6 @@
 #include "funcs.h"
 
-int main(int argc, char const *argv[]) {
+int main() {
     size_t bufsize = 128;
     char* buf = malloc(bufsize * sizeof(char));
     size_t len = 0;
