@@ -26,3 +26,5 @@ typedef struct Number {
 char getOp(char *str);
 enum NumericalSystems getSys(char *num);
 int isValidNumber(char* str, enum NumericalSystems nSys);
+long long myStrToInt(char *num, enum NumericalSystems nSys);
+int charToInt(char ch);

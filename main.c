@@ -22,7 +22,9 @@ int main() {
     } while (c != '\n');
 
     buf[len++] = '\0';
-    printf("%d", getSys(buf));
+    
+    //printf("sys = %d, num = %d", getSys(buf), myStrToInt(buf, getSys(buf)));
+
     free(buf);
     return 0;
 }

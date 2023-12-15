@@ -92,3 +92,45 @@ int isValidNumber(char* str, enum NumericalSystems nSys) {
 
     return 1;
 }
+
+long long myStrToInt(char *str, enum NumericalSystems nSys) {
+    if (nSys == UNKNOWN) {
+        fprintf(stderr, "Invalid numerical system specified.\n");
+        exit(-1);
+    }
+    
+    int offset = 0;
+    if (*str == '-')
+        offset++;
+    if (*(str + offset) == '~')
+        offset++;
+
+    switch (nSys) {
+        case HEX:
+            offset += 2;
+            break;
+        case OCT:
+            offset += 1;
+        default:
+            offset += 0;
+    }
+    char *num = str + offset;
+    long long result = 0;
+    size_t len = strlen(num);
+
+    for (size_t i = 0; i < len; ++i) {
+        result += charToInt(num[i]) * pow(nSys, len-i - 1);
+    }
+
+    return result;
+}
+
+int charToInt(char ch) {
+    if (ch >= '0' && ch <= '9') {
+        return ch - '0';
+    } else if (ch >= 'a' && ch <= 'f') {
+        return ((ch - 'a') + 10);
+    } else {
+        return -1;
+    }
+}
