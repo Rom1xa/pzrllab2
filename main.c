@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include "funcs.h"
 
 int main(int argc, char const *argv[]) {
     size_t bufsize = 128;
