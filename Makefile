@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra
+CFLAGS = -lm -Wall -Wextra
 
 .PHONY: all clean run
 all: main

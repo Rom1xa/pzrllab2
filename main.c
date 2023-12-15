@@ -22,7 +22,7 @@ int main() {
     } while (c != '\n');
 
     buf[len++] = '\0';
-
+    printf("%d", getSys(buf));
     free(buf);
     return 0;
 }
