@@ -16,7 +16,7 @@ enum NumericalSystems {
 };
 typedef struct Number {
     long long intNum;
-    char num[128];
+    char *num;
     int sign;
     enum NumericalSystems nSys;
 } Number;
@@ -24,7 +24,12 @@ typedef struct Number {
 
 
 char getOp(char *str);
-enum NumericalSystems getSys(char *num);
+enum NumericalSystems getSys(char *str);
 int isValidNumber(char* str, enum NumericalSystems nSys);
-long long myStrToInt(char *num, enum NumericalSystems nSys);
+long long myStrToInt(char *str, enum NumericalSystems nSys);
 int charToInt(char ch);
+Number getNum(char *str);
+void decToHex(long long dec);
+void decToOctal(long long dec);
+void decToBinary(long long dec);
+void printResult(long long result,enum NumericalSystems nSys);

@@ -1,4 +1,4 @@
-#include "funcs.h"
+#include "calc.h"
 
 char getOp(char *str) {
     int i;
@@ -111,8 +111,9 @@ long long myStrToInt(char *str, enum NumericalSystems nSys) {
             break;
         case OCT:
             offset += 1;
+            break;
         default:
-            offset += 0;
+            break;
     }
     char *num = str + offset;
     long long result = 0;
@@ -133,4 +134,93 @@ int charToInt(char ch) {
     } else {
         return -1;
     }
+}
+
+Number getNum(char *str) {
+    Number n;
+    n.nSys = getSys(str);
+    n.intNum = myStrToInt(str, n.nSys);
+    n.num = str;
+    if (str[0] == '-') {
+        n.sign = -1;
+    } else {
+        n.sign = 1;
+    }
+    return n;
+}
+void decToHex(long long dec) {
+    if (dec < 0) {
+        printf("-");
+        dec = dec * (-1);
+    }
+    char hex[128];
+    int i = 0;
+    while (dec != 0) {
+        long long remainder = dec % 16;
+        if (remainder < 10) {
+            hex[i] = remainder + '0';
+        } else {
+            hex[i] = remainder - 10 + 'A';
+        }
+        i++;
+        dec = dec / 16;
+    }
+    printf("0x");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%c", hex[j]);
+    }
+}
+
+void decToOctal(long long dec) {
+    if (dec == 0) {
+        printf("0");
+    }
+    if (dec < 0) {
+        printf("-");
+        dec = dec * (-1);
+    }
+    int octalNum[128];
+    int i = 0;
+    while (dec != 0) {
+        octalNum[i] = dec % 8;
+        dec = dec / 8;
+        i++;
+    }
+    //printf("0");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", octalNum[j]);
+    }
+}
+
+void decToBinary(long long dec) {
+    if (dec == 0) {
+        printf("0");
+    }
+    if (dec < 0) {
+        printf("-");
+        dec = dec * (-1);
+    }
+    int binaryNum[128];
+    int i = 0;
+    while (dec > 0) {
+        binaryNum[i] = dec % 2;
+        dec = dec / 2;
+        i++;
+    }
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", binaryNum[j]);
+    }
+}
+
+void printResult(long long result,enum NumericalSystems nSys) {
+    if (nSys == BIN) {
+            decToBinary(result);
+            printf(" (%lld)\n", result);
+        } else if (nSys == OCT) {
+            decToOctal(result);
+            printf(" (%lld)\n", result);
+        } else if (nSys == HEX) {
+            decToHex(result);
+            printf(" (%lld)\n", result);
+        }
 }
