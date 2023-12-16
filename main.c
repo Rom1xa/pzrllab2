@@ -73,5 +73,6 @@ int main() {
     }
 
     free(buf);
+    free(tokens);
     return 0;
 }
