@@ -44,7 +44,7 @@ int main() {
         long long result;
         result = calcBin(operator, n1.intNum, n2.intNum);
         if (n1.nSys != n2.nSys) {
-            perror("different systems\n");
+            fprintf(stderr, "different systems.\n");
             exit(-1);
         } else {
             printResult(result, n1.nSys);
@@ -54,7 +54,7 @@ int main() {
         n1 = getNum(tokens[1]);
         char operator = *tokens[0];
         if (operator != '~') {
-            perror("invalid operator\n");
+            fprintf(stderr, "invalid operator.\n");
             exit(-1);
         }
         long long result;
@@ -62,7 +62,7 @@ int main() {
         printResult(result, n1.nSys);
 
     } else if (count == 1 && tokens[0][0] != '~') {
-        perror("not enough values\n");
+        fprintf(stderr, "not enough values.\n");
         exit(-1);
     } else if (count == 1 && tokens[0][0] == '~') {
         Number n1;

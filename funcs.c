@@ -186,7 +186,7 @@ void decToOctal(long long dec) {
         dec = dec / 8;
         i++;
     }
-    //printf("0");
+    printf("0");
     for (int j = i - 1; j >= 0; j--) {
         printf("%d", octalNum[j]);
     }

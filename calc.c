@@ -25,7 +25,7 @@ long long calcBin(char operation, long long firstNum, long long secondNum) {
         return firstNum ^ secondNum;
         break;
     default:
-        perror("invalid operator\n");
+        fprintf(stderr, "Invalid operator.\n");
         exit(-1);
         break;
     }
@@ -33,7 +33,7 @@ long long calcBin(char operation, long long firstNum, long long secondNum) {
 
 long long calcUno(char operation, long long firstNum) {
     if (operation != '~') {
-        perror("invalid operator\n");
+        fprintf(stderr, "Invalid operator.\n");
         exit(-1);
     }
     return ~firstNum;
