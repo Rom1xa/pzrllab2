@@ -42,7 +42,11 @@ int main() {
         n2 = getNum(tokens[2]);
         char operator = *tokens[1];
         long long result;
-        result = calcBin(operator, n1.intNum, n2.intNum);
+        if ((n1.sign == -1 || n2.sign == -1) && (operator == '^' || operator == '&' || operator == '|')) {
+            fprintf(stderr, "nums must be positive\n");
+            exit(-1);
+        }
+        result = calcBin(operator, n1, n2);
         if (n1.nSys != n2.nSys) {
             fprintf(stderr, "different systems.\n");
             exit(-1);
@@ -58,7 +62,7 @@ int main() {
             exit(-1);
         }
         long long result;
-        result = calcUno(operator, n1.intNum);
+        result = calcUno(operator, n1);
         printResult(result, n1.nSys);
 
     } else if (count == 1 && tokens[0][0] != '~') {
@@ -68,7 +72,7 @@ int main() {
         Number n1;
         n1 = getNum(tokens[0]);
         char operator = tokens[0][0];
-        long long result = calcUno(operator, n1.intNum);
+        long long result = calcUno(operator, n1);
         printResult(result, n1.nSys);
     }
 

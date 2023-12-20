@@ -33,7 +33,7 @@ enum NumericalSystems getSys(char* str) {
     int offset = 0;
     if (*str == '~')
         offset++;
-    if (*(str + 1) == '-')
+    if (*(str + offset) == '-')
         offset++;
 
     if ((*(str + offset) == '1') && isValidNumber(str + offset, BIN)) {
@@ -149,6 +149,7 @@ Number getNum(char *str) {
     return n;
 }
 void decToHex(long long dec) {
+    long long tmp = dec;
     if (dec < 0) {
         printf("-");
         dec = dec * (-1);
@@ -160,21 +161,22 @@ void decToHex(long long dec) {
         if (remainder < 10) {
             hex[i] = remainder + '0';
         } else {
-            hex[i] = remainder - 10 + 'A';
+            hex[i] = remainder - 10 + 'a';
         }
         i++;
         dec = dec / 16;
     }
     printf("0x");
+    if (tmp == 0) {
+        printf("0");
+    }
     for (int j = i - 1; j >= 0; j--) {
         printf("%c", hex[j]);
     }
 }
 
 void decToOctal(long long dec) {
-    if (dec == 0) {
-        printf("0");
-    }
+    long long tmp = dec;
     if (dec < 0) {
         printf("-");
         dec = dec * (-1);
@@ -187,6 +189,9 @@ void decToOctal(long long dec) {
         i++;
     }
     printf("0");
+    if (tmp == 0) {
+        printf("0");
+    }
     for (int j = i - 1; j >= 0; j--) {
         printf("%d", octalNum[j]);
     }

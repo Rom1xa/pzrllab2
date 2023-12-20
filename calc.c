@@ -1,28 +1,30 @@
 #include "calc.h"
 
-long long calcBin(char operation, long long firstNum, long long secondNum) {
+long long calcBin(char operation, Number firstNum, Number secondNum) {
+    firstNum.intNum *= firstNum.sign;
+    secondNum.intNum *= secondNum.sign;
     switch (operation)
     {
     case '+':
-        return firstNum + secondNum;
+        return firstNum.intNum + secondNum.intNum;
         break;
     case '-':
-        return firstNum - secondNum;
+        return firstNum.intNum - secondNum.intNum;
         break;
     case '*':
-        return firstNum * secondNum;
+        return firstNum.intNum * secondNum.intNum;
         break;
     case '%':
-        return firstNum % secondNum;
+        return firstNum.intNum % secondNum.intNum;
         break;
     case '&':
-        return firstNum & secondNum;
+        return firstNum.intNum & secondNum.intNum;
         break;
     case '|':
-        return firstNum | secondNum;
+        return firstNum.intNum | secondNum.intNum;
         break;
     case '^':
-        return firstNum ^ secondNum;
+        return firstNum.intNum ^ secondNum.intNum;
         break;
     default:
         fprintf(stderr, "Invalid operator.\n");
@@ -31,10 +33,10 @@ long long calcBin(char operation, long long firstNum, long long secondNum) {
     }
 }
 
-long long calcUno(char operation, long long firstNum) {
+long long calcUno(char operation, Number firstNum) {
     if (operation != '~') {
         fprintf(stderr, "Invalid operator.\n");
         exit(-1);
     }
-    return ~firstNum;
+    return ~firstNum.intNum;
 }
