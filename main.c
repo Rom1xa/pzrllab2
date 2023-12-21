@@ -40,6 +40,10 @@ int main() {
         Number n1, n2;
         n1 = getNum(tokens[0]);
         n2 = getNum(tokens[2]);
+        if ((n1.intNum == 0) && (n2.intNum == 0)) {
+            printf("0 (0)\n");
+            return -1;
+        }
         char operator = *tokens[1];
         long long result;
         if ((n1.sign == -1 || n2.sign == -1) && (operator == '^' || operator == '&' || operator == '|')) {
